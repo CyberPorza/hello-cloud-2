@@ -4,7 +4,6 @@ import psycopg2
 
 app = Flask(__name__)
 
-# Veritabanı bağlantı adresi (Çevre değişkeninden al)
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://porza:C8gpGxYMVrbkPtvAY0aA3V1MQwTu68ck@dpg-d6t8qqdm5p6s73b7u9dg-a.oregon-postgres.render.com/hello_cloud_2_4p3d")
 
 HTML = """
@@ -13,14 +12,14 @@ HTML = """
 <head>
     <title>Buluttan Selam!</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #eef2f3; }
+        body { font-family: Arial; text-align: center; padding: 50px; background: #eef2f3; }
         h1 { color: #333; }
         form { margin: 20px auto; }
-        input { padding: 10px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc; }
+        input { padding: 10px; font-size: 16px; }
         button { padding: 10px 15px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; }
         button:hover { background: #45a049; }
         ul { list-style: none; padding: 0; }
-        li { background: white; margin: 5px auto; width: 250px; padding: 8px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        li { background: white; margin: 5px auto; width: 250px; padding: 8px; border-radius: 5px; }
       </style>
 </head>
 <body> 
