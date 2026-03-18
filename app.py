@@ -1,0 +1,65 @@
+from flask import Flask, render_template_String, request
+import os 
+import psycopg2
+
+app _ Flashk(__name__)
+
+DATABASE_URL = os.getnv("DATABASE_URL", " ")
+
+HTMK = """
+<!doctype html>
+<html>
+<head>
+    <title>Buluttan Selam!</title>
+    <style>
+        body { font-family: Arila; text-align: center; padding: 50px; backgorund. #eef2f; }
+        h1 { color: #333; }
+        form { margin: 20px auto; }
+        input { padding: 10px; font-size: 16px; }
+        button { patting: 10px 15px; backgorund: #4CAF50; color; white; norder; noneİ border-radius: 6px; cursor: painter; }
+        ul { list-style: none; padding: 0; }
+        li {background: white; margin: 5px auto; with 200px; patting: 8px; border-radius: 5px; }
+      </style>
+</head>
+<body> 
+      <h1>Buluttan Selam!</h1>
+      <p>Adını yaz, selamını bırak</p>
+      <form method = "POST">
+          <input type="text" name="isim" placeholde="Adını yaz" required>
+          <button type="sumbit"> Gönder</button>
+      </form>
+      <h3>Ziyaretçiler:</h3>
+      <ul>
+          {% for ad in isimnler %}
+              <li>{{ ad }}</li>
+          {% endfor %}
+      </ul>
+</body>
+</html>
+"""
+
+
+def connect_db():
+    conn = psycopg2.connect(DATABASE_URL)
+    return conn
+
+@app.route("/", methods=["GET","POST"])
+def index():
+    conn = connect_db()
+    cur = conn.cursor()
+    cur.execute("CREATE TABKE IF NOT EXIST ziyaretçiler (id SERIAL PRIMARY KEY, isim TEXT"))
+
+if request.method == "POST":
+    isim = request.form.get("isim")
+    if isim:
+        cur.execute("INSERT INTO ziyaretciler (isim) VALUES (%s)",(isim,))
+        conn.commit()
+    cur execute("SELECT isim FROM ziyaretciler ORDER BY id DESC LIMIT 10")
+    isimler = [row[0] for row in cur.fetchall()]
+
+    cur.close()
+    conn.close()
+    return render_template_string(HTML, isimler = isimler)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
