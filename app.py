@@ -30,14 +30,16 @@ HTML = """
           <input type="text" name="isim" placeholder="Adını yaz" required>
           <button type="submit">Gönder</button>
       </form>
-      <h3>Ziyaretçiler:</h3>
-      <ul>
-          {% for ad in isimler %}
-              <li>{{ ad }}</li>
-          {% endfor %}
-      </ul>
-</body>
-</html>
+     <h3>Ziyaretçiler:</h3>
+<ul>
+    {% if isimler %}
+        {% for ad in isimler %}
+            <li>{{ ad }}</li>
+        {% endfor %}
+    {% else %}
+        <li>Henüz kimse yok.</li>
+    {% endif %}
+</ul>
 """
 
 def get_db_connection():
