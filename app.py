@@ -2,7 +2,7 @@ from flask import Flask, render_template_String, request
 import os 
 import psycopg2
 
-app _ Flashk(__name__)
+app _ Flask(__name__)
 
 DATABASE_URL = os.getnv("DATABASE_URL", " ")
 
