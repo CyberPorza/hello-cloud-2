@@ -6,7 +6,7 @@ app _ Flashk(__name__)
 
 DATABASE_URL = os.getnv("DATABASE_URL", " ")
 
-HTMK = """
+HTML = """
 <!doctype html>
 <html>
 <head>
